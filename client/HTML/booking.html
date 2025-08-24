@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бронирование билета - GoodBye Airlines</title>
+    <link rel="stylesheet" href="../CSS/booking-enhanced.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="../JavaScript/booking.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo" onclick="window.location.href='index.html'">
+                    <img src="assets/logo.png" alt="GoodBye Airlines" />
+                    <span>GoodBye Airlines</span>
+                </div>
+                <div class="nav-info">
+                    <div class="breadcrumb">
+                        <a href="index.html">Главная</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span>Бронирование</span>
+                    </div>
+                    <div class="user-profile" onclick="redirectToProfile()">
+                        <i class="fas fa-user"></i>
+                        <span id="userGreeting">Профиль</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Progress Indicator -->
+    <div class="progress-container">
+        <div class="container">
+            <div class="progress-steps">
+                <div class="step active">
+                    <div class="step-circle">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <span>Выбор рейса</span>
+                </div>
+                <div class="step active">
+                    <div class="step-circle">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <span>Данные пассажиров</span>
+                </div>
+                <div class="step">
+                    <div class="step-circle">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <span>Оплата</span>
+                </div>
+                <div class="step">
+                    <div class="step-circle">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <span>Подтверждение</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="booking-layout">
+                <!-- Left Column -->
+                <div class="booking-form-section">
+                    <div id="message" class="notification" style="display: none;"></div>
+                    
+                    <!-- Flight Information -->
+                    <section class="section flight-info-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-plane-departure"></i> Информация о рейсе</h2>
+                        </div>
+                        <div id="flightDetails" class="flight-summary">
+                            <!-- Flight details will be loaded via JavaScript -->
+                        </div>
+                    </section>
+
+                    <!-- Passenger Information -->
+                    <section class="section passengers-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-users"></i> Данные пассажиров</h2>
+                            <p>Заполните информацию для всех пассажиров</p>
+                        </div>
+                        
+                        <div class="passenger-counter">
+                            <label for="passengerCount">Количество пассажиров:</label>
+                            <div class="counter-controls">
+                                <button type="button" class="counter-btn" onclick="changePassengerCount(-1)">-</button>
+                                <span id="passengerCount" class="counter-value">1</span>
+                                <button type="button" class="counter-btn" onclick="changePassengerCount(1)">+</button>
+                            </div>
+                        </div>
+                        
+                        <div id="passengerForms" class="passenger-forms">
+                            <!-- Passenger forms will be added via JavaScript -->
+                        </div>
+                    </section>
+
+                    <!-- Seat Selection -->
+                    <section class="section seats-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-chair"></i> Выбор мест</h2>
+                            <p>Выберите места для всех пассажиров</p>
+                        </div>
+                        
+                        <div class="seat-map-container">
+                            <div class="aircraft-legend">
+                                <div class="legend-item">
+                                    <div class="seat-demo available"></div>
+                                    <span>Доступно</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="seat-demo occupied"></div>
+                                    <span>Занято</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="seat-demo selected"></div>
+                                    <span>Выбрано</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="seat-demo premium"></div>
+                                    <span>Премиум (+500₽)</span>
+                                </div>
+                            </div>
+                            
+                            <div id="seatMap" class="seat-map">
+                                <!-- Seat map will be generated via JavaScript -->
+                            </div>
+                            
+                            <div class="selected-seats-summary">
+                                <h4>Выбранные места:</h4>
+                                <div id="selectedSeats" class="seats-list">
+                                    <span class="no-seats">Места не выбраны</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Right Column - Price Summary -->
+                <div class="booking-summary-section">
+                    <div class="price-summary sticky">
+                        <div class="summary-header">
+                            <h3><i class="fas fa-receipt"></i> Сводка заказа</h3>
+                        </div>
+                        
+                        <div class="flight-summary-mini" id="flightSummaryMini">
+                            <!-- Mini flight summary -->
+                        </div>
+                        
+                        <div class="price-breakdown">
+                            <div class="price-item">
+                                <span>Стоимость билетов</span>
+                                <span id="ticketsPrice">0 ₽</span>
+                            </div>
+                            <div class="price-item">
+                                <span>Выбор мест</span>
+                                <span id="seatsPrice">0 ₽</span>
+                            </div>
+                            <div class="price-item">
+                                <span>Сборы и налоги</span>
+                                <span id="fees">0 ₽</span>
+                            </div>
+                            <div class="price-divider"></div>
+                            <div class="price-item total">
+                                <span><strong>Итого к оплате</strong></span>
+                                <span id="totalPrice"><strong>0 ₽</strong></span>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-actions">
+                            <button id="backBtn" class="btn btn-secondary" onclick="goBack()">
+                                <i class="fas fa-arrow-left"></i>
+                                Назад
+                            </button>
+                            <button id="bookBtn" class="btn btn-primary" onclick="proceedToPayment()">
+                                Перейти к оплате
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="security-notice">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Ваши данные защищены SSL-шифрованием</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Обработка данных...</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -23,10 +23,37 @@ const BookingSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["Waiting", "Booked", "Cancelled"],
-      default: "Waiting",
+      enum: ["Pending", "Confirmed", "Cancelled"],
+      default: "Pending",
       required: true,
     },
+    passengers: [{
+      firstName: { type: String, required: true },
+      lastName: { type: String, required: true },
+      passportNumber: { type: String, required: true },
+      dateOfBirth: { type: Date, required: true },
+      nationality: { type: String, required: true }
+    }],
+    totalPrice: {
+      type: Number,
+      required: true,
+    },
+    seatNumbers: [{
+      type: String,
+      required: true,
+    }],
+    tickets: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Ticket"
+    }],
+    paymentInfo: {
+      cardNumber: String,
+      expiryDate: String,
+      cvv: String,
+      cardHolderName: String
+    },
+    paymentDate: Date,
+    cancelDate: Date,
   },
   {
     timestamps: true,

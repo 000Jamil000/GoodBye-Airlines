@@ -1,0 +1,180 @@
+/* Enhanced Flights Results Styles */
+.flights-results {
+    margin-top: 30px;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.flights-results h2 {
+    color: #1f2937;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 0;
+}
+
+.flight-card {
+    background: white;
+    border: 2px solid #f3f4f6;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    padding: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.flight-card:hover {
+    box-shadow: 0 12px 35px rgba(37, 99, 235, 0.15);
+    transform: translateY(-3px);
+    border-color: #2563eb;
+}
+
+.flight-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.02), transparent);
+    transition: left 0.6s ease;
+}
+
+.flight-card:hover::before {
+    left: 100%;
+}
+
+.flight-info {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1fr;
+    gap: 30px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.flight-route {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 20px;
+    align-items: center;
+}
+
+.departure, .arrival {
+    text-align: center;
+}
+
+.departure h3, .arrival h3 {
+    color: #1f2937;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    font-family: "Sofia Sans", sans-serif;
+}
+
+.time {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #3357b4;
+    margin: 5px 0;
+}
+
+.date {
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.flight-arrow {
+    text-align: center;
+    color: #3357b4;
+}
+
+.flight-arrow span {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.flight-number {
+    color: #6b7280;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.flight-details p {
+    margin: 5px 0;
+    color: #4b5563;
+}
+
+.flight-details strong {
+    color: #1f2937;
+}
+
+.flight-price {
+    text-align: right;
+}
+
+.price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #059669;
+    margin-bottom: 15px;
+}
+
+.book-btn {
+    background: linear-gradient(135deg, #3357b4, #4f46e5);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.book-btn:hover {
+    background: linear-gradient(135deg, #2947a0, #4338ca);
+    transform: translateY(-1px);
+}
+
+.book-btn:active {
+    transform: translateY(0);
+}
+
+.no-flights {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6b7280;
+}
+
+.no-flights h3 {
+    color: #374151;
+    margin-bottom: 10px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .flight-info {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .flight-route {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .flight-arrow span {
+        transform: rotate(90deg);
+    }
+    
+    .flight-price {
+        text-align: center;
+    }
+}

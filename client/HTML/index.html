@@ -1,91 +1,279 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="../CSS/withdrawalTickets.css" />
+    <title>GoodBye Airlines - Поиск и бронирование авиабилетов</title>
+    <link rel="stylesheet" href="../CSS/homepage.css" />
+    <link rel="stylesheet" href="../CSS/flights.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="../JavaScript/index.js" defer></script>
   </head>
   <body>
-    <div class="container">
-      <div class="header">
-        <div class="logoAndNameCompany">
-          <img src="assets/logo.png" alt="Sorry" class="logo" />
-          <p>GoodBye</p>
-        </div>
-        <div class="icon_profile" onclick="redirectToProfile()">
-          <img
-            src="assets/profile.png"
-            alt=""
-            href="./profilePerson.html"
-            class="icon_profile"
-          />
-        </div>
-      </div>
-      <div class="slogan">
-        <h1>Поиск авиабилетов</h1>
-        <p>Легкий способ найти авиабилеты</p>
-      </div>
-      <div class="main">
-        <div class="searchTicket">
-          <form action="#">
-            <div class="input-group">
-              <input
-                type="text"
-                id="cityFrom"
-                name="departure"
-                placeholder="Казань"
-                required
-              />
+    <!-- Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="nav-container">
+          <div class="logo">
+            <img src="assets/logo.png" alt="GoodBye Airlines" />
+            <span>GoodBye Airlines</span>
+          </div>
+          <div class="nav-menu">
+            <a href="#" class="nav-link">Главная</a>
+            <a href="#" class="nav-link">Рейсы</a>
+            <a href="#" class="nav-link">Отели</a>
+            <a href="#" class="nav-link">Аренда авто</a>
+            <a href="#" class="nav-link">Поддержка</a>
+          </div>
+          <div class="nav-auth">
+            <div class="profile-icon" onclick="redirectToProfile()">
+              <i class="fas fa-user"></i>
+              <span>Войти</span>
             </div>
-            <div class="input-group">
-              <input
-                type="text"
-                id="destination"
-                name="destination"
-                placeholder="Москва"
-                required
-              />
-            </div>
-            <div class="input-group">
-              <input
-                type="text"
-                id="departureDate"
-                name="departureDate"
-                placeholder="Выберите дату"
-                data-input
-                required
-              />
-            </div>
-            <div class="input-group">
-              <input
-                type="text"
-                id="arrivalDate"
-                name="returnDate"
-                placeholder="Выберите дату"
-                data-input
-                required
-              />
-            </div>
-          </form>
-
-          <div class="BtnSearch">
-            <button type="submit" class="BtnSearchTicket" id="BtnSearchTicket">
-              Найти билеты
-            </button>
           </div>
         </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-background">
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Найдите лучшие авиабилеты</h1>
+          <p>Сравнивайте цены, выбирайте удобные рейсы и путешествуйте с комфортом</p>
+        </div>
+        
+        <!-- Search Form -->
+        <div class="search-container">
+          <div class="search-form">
+            <div class="trip-type">
+              <label class="radio-label">
+                <input type="radio" name="tripType" value="roundtrip" checked>
+                <span>Туда и обратно</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="tripType" value="oneway">
+                <span>В одну сторону</span>
+              </label>
+            </div>
+            
+            <form class="search-inputs" id="searchForm">
+              <div class="input-row">
+                <div class="input-group">
+                  <label>Откуда</label>
+                  <div class="input-with-icon">
+                    <i class="fas fa-plane-departure"></i>
+                    <input
+                      type="text"
+                      id="cityFrom"
+                      placeholder="Город отправления"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                <button type="button" class="swap-cities" id="swapCities">
+                  <i class="fas fa-exchange-alt"></i>
+                </button>
+                
+                <div class="input-group">
+                  <label>Куда</label>
+                  <div class="input-with-icon">
+                    <i class="fas fa-plane-arrival"></i>
+                    <input
+                      type="text"
+                      id="destination"
+                      placeholder="Город назначения"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              
+              <div class="input-row">
+                <div class="input-group">
+                  <label>Дата вылета</label>
+                  <div class="input-with-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                    <input
+                      type="text"
+                      id="departureDate"
+                      placeholder="Выберите дату"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                <div class="input-group" id="returnDateGroup">
+                  <label>Дата возвращения</label>
+                  <div class="input-with-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                    <input
+                      type="text"
+                      id="arrivalDate"
+                      placeholder="Выберите дату"
+                    />
+                  </div>
+                </div>
+                
+                <div class="input-group">
+                  <label>Пассажиры</label>
+                  <div class="input-with-icon passengers-selector">
+                    <i class="fas fa-user"></i>
+                    <input
+                      type="text"
+                      id="passengers"
+                      placeholder="1 взрослый"
+                      readonly
+                    />
+                    <div class="passengers-dropdown" id="passengersDropdown">
+                      <div class="passenger-row">
+                        <span>Взрослые</span>
+                        <div class="counter">
+                          <button type="button" class="counter-btn" data-type="adults" data-action="minus">-</button>
+                          <span class="counter-value" id="adultsCount">1</span>
+                          <button type="button" class="counter-btn" data-type="adults" data-action="plus">+</button>
+                        </div>
+                      </div>
+                      <div class="passenger-row">
+                        <span>Дети (2-11 лет)</span>
+                        <div class="counter">
+                          <button type="button" class="counter-btn" data-type="children" data-action="minus">-</button>
+                          <span class="counter-value" id="childrenCount">0</span>
+                          <button type="button" class="counter-btn" data-type="children" data-action="plus">+</button>
+                        </div>
+                      </div>
+                      <div class="passenger-row">
+                        <span>Младенцы (до 2 лет)</span>
+                        <div class="counter">
+                          <button type="button" class="counter-btn" data-type="infants" data-action="minus">-</button>
+                          <span class="counter-value" id="infantsCount">0</span>
+                          <button type="button" class="counter-btn" data-type="infants" data-action="plus">+</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <button type="submit" class="search-btn" id="BtnSearchTicket">
+                <i class="fas fa-search"></i>
+                Найти рейсы
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section" id="resultsSection" style="display: none;">
+      <div class="container">
         <div id="ticketList"></div>
       </div>
-      <div class="footer">
-        <!-- <img src="./assets/the wing of the aircraft.png" alt="" /> -->
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <div class="container">
+        <h2>Почему выбирают GoodBye Airlines</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h3>Быстрое бронирование</h3>
+            <p>Забронируйте билет всего за несколько кликов</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Безопасные платежи</h3>
+            <p>Ваши данные защищены современным шифрованием</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-headset"></i>
+            </div>
+            <h3>Поддержка 24/7</h3>
+            <p>Наша команда готова помочь в любое время</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <h3>Лучшие цены</h3>
+            <p>Гарантируем конкурентные цены на все направления</p>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="footer-logo">
+              <img src="assets/logo.png" alt="GoodBye Airlines" />
+              <span>GoodBye Airlines</span>
+            </div>
+            <p>Ваш надежный партнер в мире путешествий</p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          
+          <div class="footer-section">
+            <h4>Компания</h4>
+            <ul>
+              <li><a href="#">О нас</a></li>
+              <li><a href="#">Новости</a></li>
+              <li><a href="#">Карьера</a></li>
+              <li><a href="#">Инвесторы</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-section">
+            <h4>Поддержка</h4>
+            <ul>
+              <li><a href="#">Центр помощи</a></li>
+              <li><a href="#">Связаться с нами</a></li>
+              <li><a href="#">Условия использования</a></li>
+              <li><a href="#">Политика конфиденциальности</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-section">
+            <h4>Контакты</h4>
+            <div class="contact-info">
+              <p><i class="fas fa-phone"></i> +7 (800) 123-45-67</p>
+              <p><i class="fas fa-envelope"></i> info@goodbye-airlines.ru</p>
+              <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Примерная, 123</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>&copy; 2024 GoodBye Airlines. Все права защищены.</p>
+        </div>
+      </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   </body>
 </html>

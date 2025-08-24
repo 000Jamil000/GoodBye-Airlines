@@ -3,59 +3,85 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GoodBye</title>
+    <title>Авторизация - GoodBye Airlines</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <link rel="stylesheet" href="../CSS/AutorizationAndRegistration.css" />
+    <script src="../JavaScript/auth.js" defer></script>
   </head>
   <body>
     <div class="container">
       <div class="left-column">
         <div class="airplane-image">
-          <img src="./assets/airplane2.png" alt="" />
+          <img src="../assets/airplane2.png" alt="" />
         </div>
       </div>
       <div class="right-column">
         <div class="windowRegistration">
           <div class="frame">
             <div class="header">
-              <h3>Авторизация</h3>
+              <h3 id="authTitle">Авторизация</h3>
               <p>
-                Нет аккаунта?
-                <a href="./Registration.html">Зарегистрироваться </a>
+                <span id="toggleText">Нет аккаунта? </span>
+                <a href="#" id="toggleLink" onclick="toggleAuthForm()">Зарегистрироваться</a>
               </p>
             </div>
-            <div class="main">
-              <form action="">
+            
+            <div id="message" class="message" style="display: none;"></div>
+            
+            <!-- Форма входа -->
+            <div id="loginForm" class="main">
+              <form onsubmit="handleLogin(event)">
                 <div class="inputDataPerson">
                   <label>Ваш email</label>
-                  <input type="text" class="email" />
+                  <input type="email" id="loginEmail" required />
                 </div>
                 <div class="inputDataPerson">
                   <label>Пароль</label>
-                  <input type="text" class="password" />
+                  <input type="password" id="loginPassword" required />
                 </div>
               </form>
-            </div>
-            <div class="beforeFooter">
-              <hr />
-              <p>ИЛИ</p>
-              <hr />
-            </div>
-            <div class="footer">
-              <div class="btn">
-                <button class="googleEntry">
-                  <img
-                    src="./assets/Google_logo.png"
-                    alt="Google"
-                    class="googleLogo"
-                  />Войти через GOOGLE
-                </button>
+              <div class="footer">
+                <div class="btn">
+                  <button id="loginBtn" class="createAccount" onclick="document.getElementById('loginForm').querySelector('form').dispatchEvent(new Event('submit'))">
+                    Войти
+                  </button>
+                </div>
               </div>
-              <div class="btn">
-                <button class="createAccount" disabled>Войти</button>
+            </div>
+
+            <!-- Форма регистрации -->
+            <div id="registerForm" class="main" style="display: none;">
+              <form onsubmit="handleRegister(event)">
+                <div class="inputDataPerson">
+                  <label>Имя</label>
+                  <input type="text" id="firstName" required />
+                </div>
+                <div class="inputDataPerson">
+                  <label>Фамилия</label>
+                  <input type="text" id="lastName" required />
+                </div>
+                <div class="inputDataPerson">
+                  <label>Email</label>
+                  <input type="email" id="registerEmail" required />
+                </div>
+                <div class="inputDataPerson">
+                  <label>Пароль</label>
+                  <input type="password" id="registerPassword" required />
+                </div>
+                <div class="inputDataPerson">
+                  <label>Подтвердите пароль</label>
+                  <input type="password" id="confirmPassword" required />
+                </div>
+              </form>
+              <div class="footer">
+                <div class="btn">
+                  <button id="registerBtn" class="createAccount" onclick="document.getElementById('registerForm').querySelector('form').dispatchEvent(new Event('submit'))">
+                    Зарегистрироваться
+                  </button>
+                </div>
               </div>
             </div>
           </div>

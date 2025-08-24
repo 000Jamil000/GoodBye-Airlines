@@ -29,6 +29,18 @@ const TicketSchema = new mongoose.Schema(
       enum: ["Booked", "Cancelled", "Bought"],
       required: true,
     },
+    bookingId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Booking",
+      required: true,
+    },
+    passengerInfo: {
+      firstName: { type: String, required: true },
+      lastName: { type: String, required: true },
+      passportNumber: { type: String, required: true },
+      dateOfBirth: { type: Date, required: true },
+      nationality: { type: String, required: true }
+    },
   },
   {
     timestamps: true,

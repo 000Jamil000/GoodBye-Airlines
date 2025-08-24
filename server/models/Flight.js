@@ -39,6 +39,30 @@ const FlightSchema = new mongoose.Schema(
       enum: ["Economy", "Business", "First"],
       required: true,
     },
+    price: {
+      type: Number,
+      required: true,
+    },
+    totalSeats: {
+      type: Number,
+      required: true,
+      default: 100,
+    },
+    availableSeats: {
+      type: Number,
+      required: true,
+      default: 100,
+    },
+    airline: {
+      type: String,
+      required: true,
+      default: "GoodBye Airlines",
+    },
+    aircraft: {
+      type: String,
+      required: true,
+      default: "Boeing 737",
+    },
   },
   {
     timestamps: true,
